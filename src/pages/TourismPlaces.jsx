@@ -35,33 +35,33 @@ searchPlaces =(event)=> {
     
   let value = event.target.value.toLowerCase();
 
-  axios
-  .get(`http://localhost:4000/api/places/search?q=${value}`)
-  .then((all) => {
-   console.log(all);
-    // let searchArr = beers.data ;
-    // let searchResult = searchArr.filter((beer)=>beer.name.toLowerCase().includes(value))
+  apiHandler.
+  getMonumentsList()
+  .then((dataMonuments) => {
+    //  console.log(dataMonuments.monumentsRes);
+    let searchArr = dataMonuments.monumentsRes ;
+    let searchResult = searchArr.filter((monument)=>monument.fields.tico.toLowerCase().includes(value))
 
-    // console.log(searchResult);
-    //  this.setState({ beers: searchResult });
+    console.log(searchResult);
+     this.setState({ monuments: searchResult });
+ 
+  })
+  .catch((err) => console.log(err));
+
+  apiHandler.
+  getMuseumsList()
+  .then((dataMuseums) => {
+    //  console.log(dataMuseums.museumsRes);
+    let searchArr = dataMuseums.museumsRes ;
+    let searchResult = searchArr.filter((museum)=>museum.fields.nom_du_musee.toLowerCase().includes(value))
+
+    console.log(searchResult);
+     this.setState({ museums: searchResult });
   })
   .catch((error) => {
     console.log(error);
   });
-//  apiHandler.
-//  getSearchList
-//  .get()
-//  .then((allDB) => {
-// console.log( allDB);
-//    let searchArr = monument ;
-//    let searchResult = searchArr.filter((monu)=>monu.tico.toLowerCase().includes(value))
 
-//    console.log(searchResult);
-//     this.setState({ beers: searchResult });
-//  })
-//  .catch((error) => {
-//    console.log(error);
-//  });
  }
 
 
@@ -76,7 +76,7 @@ searchPlaces =(event)=> {
 <div>
 
 <div>
-  <input placeholder="Search"  onChange={this.searchPlaces} type="text"/> 
+  <input placeholder="Search" value={this.state.monuments.monumentsRes || this.state.museums.museumsRes}  onChange={this.searchPlaces} type="text"/> 
 </div>
 
  <div> 
