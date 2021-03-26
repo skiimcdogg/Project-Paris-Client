@@ -44,12 +44,42 @@ const apiHandler = {
       .catch(errorHandler);
   },
 
-  getItems() {
+  getMonumentsList() {
     return service
-      .get("/api/items")
+      .get("/api/places/monuments")
       .then((res) => res.data)
       .catch(errorHandler);
   },
+
+  getMuseumsList() {
+    return service
+      .get("/api/places/museums")
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  getMonument(id) {
+    return service
+      .get(`/api/places/monument/${id}`)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  getMuseum(id) {
+    return service
+      .get(`/api/places/museum/${id}`)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  // getSearchList(value) {
+
+  //   return service
+  //     .get(`/api/places/search?q=${value}`)
+  //     .then((museums) => museums.data)
+  //     .catch(errorHandler);
+  // },
+
 };
 
 export default apiHandler;
