@@ -72,13 +72,42 @@ const apiHandler = {
       .catch(errorHandler);
   },
 
-  // getSearchList(value) {
+  getComments() {
+    return service
+      .get(`/api/comments`)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
 
-  //   return service
-  //     .get(`/api/places/search?q=${value}`)
-  //     .then((museums) => museums.data)
-  //     .catch(errorHandler);
-  // },
+  addCommentMonument(id,newComment){
+    return  service
+    .post(`/api/comments/new/monument/${id}`,newComment)
+    .then((res) => res.data)
+    .catch(errorHandler);
+  },
+
+  addCommentMuseum(id,newComment){
+    return  service
+    .post(`/api/comments/new/museum/${id}`,newComment)
+    .then((res) => res.data)
+    .catch(errorHandler);
+  },
+
+  deleteComment(id){
+    console.log("working");
+    return  service
+    .delete(`/api/comments/delete/${id}`)
+    .then((res) => res.data )
+    .catch(errorHandler);
+  },
+
+  editComment(id,updComment){
+    console.log("working");
+    return  service
+    .patch(`/api/comments/edit/${id}`,updComment)
+    .then((res) => res.data )
+    .catch(errorHandler);
+  },
 
 };
 
