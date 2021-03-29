@@ -4,10 +4,11 @@ import apiHandler from "../api/apiHandler";
 
 class DeleteFav extends Component {
 
-    handleSubmit = (event) => {
-        event.preventDefault()
+    handleClick = (event) => {
+        // event.preventDefault()
 
-        const id = this.props.match.params.id;
+        const id = this.props.id;
+        console.log(this.props.id)
 
           apiHandler.
           deleteFavorites(id)
@@ -17,12 +18,13 @@ class DeleteFav extends Component {
           .catch((error) => {
             console.log(error)
           })
+          window.location.reload();
       }
     
     render() {
         return(
             <div>
-                <button onClick={this.handleClick}> Delete this favorite </button>
+                <button onClick={this.handleClick}> Delete </button>
             </div>
         )
     }

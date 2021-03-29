@@ -35,14 +35,16 @@ const Profile = (props) => {
           {props.context.user.favorites.map((fav) => {
             if (fav.favMonuments != null) {
               return(
-                <div key={fav.id}>
+                <div key={fav.favMonuments._id}>
                 <p>{fav.favMonuments.fields.tico}</p>
+                <DeleteFav id={fav._id}/>
                 </div>
               )
             } else if (fav.favMuseums != null) {
               return(
-                <div key={fav.id}>
+                <div key={fav.favMuseums._id}>
                 <p>{fav.favMuseums.fields.nom_du_musee}</p>
+                <DeleteFav id={fav._id}/>
                 </div>
               )
             }
