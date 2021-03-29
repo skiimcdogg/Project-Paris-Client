@@ -8,7 +8,7 @@ class AddDeleteMuseumComment extends Component {
   state = {
     comments: [],
     content :"",
-    rating:"",
+    rating:"0",
   }
 
   componentDidMount(){
@@ -28,23 +28,31 @@ class AddDeleteMuseumComment extends Component {
 
   handleChange = (event) => {
     const { name, value } = event.target;
+    console.log({ name, value });
     this.setState({
       [name]: value,
     });
   };
 
+  getRate =(event)=>{
+    const ratingValue = event.target.value;
+    console.log(ratingValue);
+    console.log(event.target.value);
+    this.setState({ rating: ratingValue, });
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
-    const { content } = this.state;
+    const { content,rating } = this.state;
     const id = this.props.id;
   
   apiHandler
-  .addCommentMuseum(id,{ content })
+  .addCommentMuseum(id,{ content,rating })
     .then((data) => {
       console.log({ content });
-      this.setState({ comments:[ content,...this.state.comments]});
+      this.setState({ comments:[  content,rating ,...this.state.comments]});
       console.log(this.state.comments);
-      // window.location.reload();
+      window.location.reload();
     })
     .catch((err) => console.log(err));
     
@@ -80,18 +88,17 @@ class AddDeleteMuseumComment extends Component {
       
       <div>
         <input name="content" type="text" value={this.state.content} onChange={this.handleChange}></input>
-        {/* <div>
+        <div>
           <label for="ratestar">rate:</label>
-            <select>
-            <option value="rating">--Rate this place--</option>
-              <option onChange={this.handleChange} name="rating" value="0">0</option>
-              <option onChange={this.handleChange} name="rating" value="1">1</option>
-              <option onChange={this.handleChange} name="rating" value="2">2</option>
-              <option onChange={this.handleChange} name="rating" value="3">3</option>
-              <option onChange={this.handleChange} name="rating" value="4">4</option>
-              <option onChange={this.handleChange} name="rating" value="5">5</option>
+            <select value={this.state.rating} onChange={this.getRate}>
+              <option name="rating" value="0">0</option>
+              <option name="rating" value="1">1</option>
+              <option name="rating" value="2">2</option>
+              <option name="rating" value="3">3</option>
+              <option name="rating" value='4'>4</option>
+              <option name="rating" value="5" >5</option>
             </select>
-          </div> */}
+          </div>
         <button onClick={this.handleSubmit} >add</button>
         
           {this.state.comments.map((comment) => (
