@@ -34,14 +34,14 @@ class AddDeleteMonumentComment extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { content} = this.state;
+    const { content,rating} = this.state;
     const id = this.props.id;
   
   apiHandler
-  .addCommentMonument(id,{ content })
+  .addCommentMonument(id,{ content,rating })
     .then((data) => {
       console.log({ content });
-      this.setState({ comments:[ content,...this.state.comments]});
+      this.setState({ comments:[ content,rating,...this.state.comments]});
       console.log(this.state.comments);
       window.location.reload();
     })
@@ -51,7 +51,12 @@ class AddDeleteMonumentComment extends Component {
       content: '',
     });
   }
-
+  getRate =(event)=>{
+    const ratingValue = event.target.value;
+    console.log(ratingValue);
+    console.log(event.target.value);
+    this.setState({ rating: ratingValue, });
+  }
 
   deleteComment =(event)=>{
     
@@ -78,15 +83,14 @@ class AddDeleteMonumentComment extends Component {
         <input name="content" type="text" value={this.state.content} onChange={this.handleChange}></input>
         <button onClick={this.handleSubmit} >add</button>
         <div>
-          <label htmlFor="ratestar">rate:</label>
-            <select>
-            <option value="rating">--Rate this place--</option>
+          <label for="ratestar">rate:</label>
+            <select value={this.state.rating} onChange={this.getRate}>
               <option name="rating" value="0">0</option>
               <option name="rating" value="1">1</option>
               <option name="rating" value="2">2</option>
               <option name="rating" value="3">3</option>
-              <option name="rating" value="4">4</option>
-              <option name="rating" value="5">5</option>
+              <option name="rating" value='4'>4</option>
+              <option name="rating" value="5" >5</option>
             </select>
           </div>
           {this.state.comments.map((comment) => (

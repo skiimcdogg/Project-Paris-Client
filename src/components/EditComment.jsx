@@ -16,12 +16,19 @@ class EditComment extends Component {
     });
   };
 
+  getRate =(event)=>{
+    const ratingValue = event.target.value;
+    console.log(ratingValue);
+    console.log(event.target.value);
+    this.setState({ rating: ratingValue, });
+  }
+
   editComment =(event)=>{
     const comId = this.props.id
-    const { content } = this.state;
+    const { content,rating } = this.state;
 
     apiHandler
-    .editComment(comId,{ content })
+    .editComment(comId,{ content,rating })
     .then(() => {
       // this.setState({ comments:[{content:[...this.state.comments]}]});
       window.location.reload();
@@ -36,14 +43,13 @@ class EditComment extends Component {
     <input type="text" name="content" value={this.state.content} onChange={this.handleChange}/>
     <div>
           <label for="ratestar">rate:</label>
-            <select>
-            <option value="rating">--Rate this place--</option>
+            <select value={this.state.rating} onChange={this.getRate}>
               <option name="rating" value="0">0</option>
               <option name="rating" value="1">1</option>
               <option name="rating" value="2">2</option>
               <option name="rating" value="3">3</option>
-              <option name="rating" value="4">4</option>
-              <option name="rating" value="5">5</option>
+              <option name="rating" value='4'>4</option>
+              <option name="rating" value="5" >5</option>
             </select>
           </div>
   <button onClick={this.editComment}>modify</button>
