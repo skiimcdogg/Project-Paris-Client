@@ -108,6 +108,13 @@ const apiHandler = {
     .then((res) => res.data )
     .catch(errorHandler);
   },
+  
+  addFavorites(id) {
+    return service
+    .post(`/api/favorites/add/${id}`)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
 
 };
 

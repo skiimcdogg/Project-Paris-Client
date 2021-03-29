@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl' // NEW
 import "mapbox-gl/src/css/mapbox-gl.css"; //NEW
 import AddDeleteMuseumComment from './../components/AddDeleteMuseumComment';
+import Favorites from "../components/Favorites";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN; // NEW
 
@@ -70,6 +71,7 @@ initMap = (lat,lng) => {
         <p>Fermeture annuelle:  <br/> {this.state.Museum.fields.fermeture_annuelle}</p>
         <div ref={this.mapDomRef} style={{height: 400, width: "100%"}}></div>
         <AddDeleteMuseumComment id={this.props.match.params.id}/>
+        <Favorites />
         <Link to="/places">Back to list</Link>
       </div>
     )
