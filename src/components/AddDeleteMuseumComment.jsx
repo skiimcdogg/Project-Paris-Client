@@ -91,7 +91,6 @@ class AddDeleteMuseumComment extends Component {
         <div>
           <label for="ratestar">rate:</label>
             <select value={this.state.rating} onChange={this.getRate}>
-              <option name="rating" value="0">0</option>
               <option name="rating" value="1">1</option>
               <option name="rating" value="2">2</option>
               <option name="rating" value="3">3</option>
