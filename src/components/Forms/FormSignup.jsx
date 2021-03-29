@@ -5,6 +5,8 @@ import apiHandler from "../../api/apiHandler";
 
 class FormSignup extends Component {
   state = {
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
   };
@@ -36,7 +38,23 @@ class FormSignup extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor="email">Email</label>
+        <label htmlFor="firstName">First Name: </label>
+        <input
+          onChange={this.handleChange}
+          value={this.state.firstName}
+          type="text"
+          id="firstName"
+          name="firstName"
+        />
+        <label htmlFor="lastName">Last Name: </label>
+        <input
+          onChange={this.handleChange}
+          value={this.state.lastName}
+          type="text"
+          id="lastName"
+          name="lastName"
+        />
+        <label htmlFor="email">Email: </label>
         <input
           onChange={this.handleChange}
           value={this.state.email}
@@ -44,7 +62,7 @@ class FormSignup extends Component {
           id="email"
           name="email"
         />
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">Password: </label>
         <input
           onChange={this.handleChange}
           value={this.state.password}

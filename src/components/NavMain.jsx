@@ -32,7 +32,7 @@ const NavMain = (props) => {
           <React.Fragment>
             <li>
               <NavLink to="/profile">
-                {context.user && context.user.email}
+                {context.user && context.user.lastName} {context.user && context.user.firstName}
               </NavLink>
             </li>
             <li>
