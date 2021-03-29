@@ -31,37 +31,23 @@ const Profile = (props) => {
       </table>
 
       <h3>Mes favoris:</h3>
-      <p>{props.context.user.favorites[0].favMonuments.fields.tico}</p>
-      <p>{props.context.user.favorites[1].favMonuments.fields.tico}</p>
 
-      {props.context.user.favorites.map((fav) => {
-        if (fav.monuments != null) {
-          return(
-            <div key={fav.id}>
-            <p>{fav.favMonuments.fields.tico}</p>
-            <DeleteFav />
-            </div>
-          )
-        } else if (fav.favMuseums != null) {
-          return(
-            <div key={fav.id}>
-            <p>{fav.favMuseums.fields.nom_du_musee}</p>
-            <DeleteFav />
-            </div>
-          )
-        } else {
-          <p>Nothing here!</p>
-        }
-      })}
+          {props.context.user.favorites.map((fav) => {
+            if (fav.favMonuments != null) {
+              return(
+                <div key={fav.id}>
+                <p>{fav.favMonuments.fields.tico}</p>
+                </div>
+              )
+            } else if (fav.favMuseums != null) {
+              return(
+                <div key={fav.id}>
+                <p>{fav.favMuseums.fields.nom_du_musee}</p>
+                </div>
+              )
+            }
+          })}
 
-
-      {/* {props.context.user.favorites.map((fav) => {
-        return(
-          <div key={fav.id}>
-          <p>{fav.favMuseums.fields.nom_du_musee}</p>
-          </div>
-        )
-      })} */}
     </div>
   );
 };
