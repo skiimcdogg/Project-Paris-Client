@@ -116,6 +116,12 @@ const apiHandler = {
       .catch(errorHandler);
   },
 
+  deleteFavorites(id) {
+    return service
+    .delete(`/api/favorites/delete/${id}`)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
 };
 
 export default apiHandler;

@@ -1,15 +1,9 @@
 import React from "react";
 import { withUser } from "./../components/Auth/withUser";
+import DeleteFav from "../components/DeleteFav";
 
 const Profile = (props) => {
   console.log(props.context.user.favorites);
-
-  const favMonuments = [];
-
-  props.context.user.favorites.forEach((elem) => {
-    favMonuments.push(elem);
-  })
-  console.log(favMonuments);
 
   return (
     <div>
@@ -24,25 +18,50 @@ const Profile = (props) => {
           <tr>
             <td>Email: </td>
             <td> {props.context.user.email}</td>
-            <td>cell2_1</td>
           </tr>
           <tr>
             <td>LastName: </td>
             <td> {props.context.user.lastName}</td>
-            <td>cell2_2</td>
           </tr>
           <tr>
             <td>FirstName: </td>
             <td> {props.context.user.firstName}</td>
-            <td>cell2_3</td>
           </tr>
         </tbody>
       </table>
-      <p>{props.context.user.favorites[0].favMonuments.fields.adrs}</p>
+
+      <h3>Mes favoris:</h3>
+      <p>{props.context.user.favorites[0].favMonuments.fields.tico}</p>
+      <p>{props.context.user.favorites[1].favMonuments.fields.tico}</p>
+
       {props.context.user.favorites.map((fav) => {
-        <p>{fav.favMonuments}</p>
+        if (fav.monuments != null) {
+          return(
+            <div key={fav.id}>
+            <p>{fav.favMonuments.fields.tico}</p>
+            <DeleteFav />
+            </div>
+          )
+        } else if (fav.favMuseums != null) {
+          return(
+            <div key={fav.id}>
+            <p>{fav.favMuseums.fields.nom_du_musee}</p>
+            <DeleteFav />
+            </div>
+          )
+        } else {
+          <p>Nothing here!</p>
+        }
       })}
-      <p>{favMonuments.fields}</p>
+
+
+      {/* {props.context.user.favorites.map((fav) => {
+        return(
+          <div key={fav.id}>
+          <p>{fav.favMuseums.fields.nom_du_musee}</p>
+          </div>
+        )
+      })} */}
     </div>
   );
 };
