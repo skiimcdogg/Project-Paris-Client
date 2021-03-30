@@ -8,7 +8,7 @@ class AddDeleteMuseumComment extends Component {
   state = {
     comments: [],
     content :"",
-    rating:"0",
+    rating:"",
   }
 
   componentDidMount(){
@@ -28,7 +28,6 @@ class AddDeleteMuseumComment extends Component {
 
   handleChange = (event) => {
     const { name, value } = event.target;
-    console.log({ name, value });
     this.setState({
       [name]: value,
     });
@@ -49,10 +48,9 @@ class AddDeleteMuseumComment extends Component {
   apiHandler
   .addCommentMuseum(id,{ content,rating })
     .then((data) => {
-      console.log({ content });
-      this.setState({ comments:[  content,rating ,...this.state.comments]});
-      console.log(this.state.comments);
-      window.location.reload();
+      console.log(data);
+      console.log({data,...this.state.comments});
+      this.setState({ comments:[data,...this.state.comments]});
     })
     .catch((err) => console.log(err));
     
@@ -68,26 +66,33 @@ class AddDeleteMuseumComment extends Component {
     
     apiHandler
     .deleteComment(comId)
-    .then(() => {
-      // this.setState({ comments:[{content:[...this.state.comments]}]});
+    .then((commentDB) => {
+   
+      console.log(commentDB);
+      const copyArray = this.state.comments;
+      const filterdArr = copyArray.filter((comment) => { 
+        console.log(comment);
+        const deleteId = commentDB._id
+       return comment._id !== deleteId}
+      ) 
+      this.setState({ comments:filterdArr});
       console.log("pourquoi rafraichi pas");
     })
     .catch((err) => console.log(err));
-    
-    window.location.reload();
+  
     }
 
     
 
 
   render() {
-    // if (this.state.comments === undefined) {
-    //   return <div>Loading...</div>;}
-    console.log("mount");
+
+  
     return (
       
       <div>
         <input name="content" type="text" value={this.state.content} onChange={this.handleChange}></input>
+        <button onClick={this.handleSubmit} >add</button>
         <div>
           <label for="ratestar">rate:</label>
             <select value={this.state.rating} onChange={this.getRate}>
@@ -99,15 +104,15 @@ class AddDeleteMuseumComment extends Component {
               <option name="rating" value="5" >5</option>
             </select>
           </div>
-        <button onClick={this.handleSubmit} >add</button>
+       
         
           {this.state.comments.map((comment) => (
              <div key={comment._id}>
              <h3>All comments from visitors</h3>
-             <h4>user:{comment.user} </h4>
+             <h4>user:{comment.user.firstName}{comment.user.lastName}</h4>
              <p>comment:{comment.content}</p>
              <h2>your rate: {comment.rating}</h2>  
-             <EditComment id={comment._id}/>
+             <EditComment comArray={this.state.comments} id={comment._id}/>
              <button value={comment._id} onClick={this.deleteComment}>x</button>
          </div>  ))}
       </div>

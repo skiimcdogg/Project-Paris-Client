@@ -34,7 +34,12 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN; // NEW
     })
     .catch((err) => console.log(err));
 
-}
+
+
+  }
+
+
+
 
 initMap = (lat,lng) => {
   // NEW METHOD

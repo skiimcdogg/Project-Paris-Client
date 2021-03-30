@@ -10,6 +10,11 @@ class AddDeleteMonumentComment extends Component {
     rating:"",
   }
 
+  // setValue() {
+  //   this.setState({ comments: this.state.comments })
+  // }
+
+
   componentDidMount(){
   apiHandler.
   getComments()
@@ -22,6 +27,7 @@ class AddDeleteMonumentComment extends Component {
     this.setState({ comments: thisMonumentComment});
   })
   .catch((err) => console.log(err));
+
   }
 
 
@@ -40,16 +46,16 @@ class AddDeleteMonumentComment extends Component {
   apiHandler
   .addCommentMonument(id,{ content,rating })
     .then((data) => {
-      console.log({ content });
-      this.setState({ comments:[ content,rating,...this.state.comments]});
-      console.log(this.state.comments);
-      window.location.reload();
+      console.log(data);
+      console.log({data,...this.state.comments});
+      this.setState({ comments:[data,...this.state.comments]});
     })
     .catch((err) => console.log(err));
     
     this.setState({
       content: '',
     });
+
   }
   getRate =(event)=>{
     const ratingValue = event.target.value;
@@ -64,19 +70,28 @@ class AddDeleteMonumentComment extends Component {
     
     apiHandler
     .deleteComment(comId)
-    .then(() => {
-      // this.setState({ comments:[{content:[...this.state.comments]}]});
+    .then((commentDB) => {
+
+      console.log(commentDB);
+      const copyArray = this.state.comments;
+      const filterdArr = copyArray.filter((comment) => { 
+        console.log(comment);
+        const deleteId = commentDB._id
+       return comment._id !== deleteId}
+      ) 
+      this.setState({ comments:filterdArr});
       console.log("pourquoi rafraichi pas");
     })
     .catch((err) => console.log(err));
     
-    window.location.reload();
-    }
-
-    
+    // window.location.reload();
+    // })
+  }
 
 
   render() {
+    
+    
     return (
       
       <div>
@@ -96,7 +111,7 @@ class AddDeleteMonumentComment extends Component {
           {this.state.comments.map((comment) => (
              <div key={comment._id}>
              <h3>All comments from visitors</h3>
-             <h4>user:{comment.user} </h4>
+             <h4>user:{comment.user.firstName}{comment.user.lastName} </h4>
              <p>comment:{comment.content}</p>
              <h2>your rate: {comment.rating}</h2>  
              <EditComment id={comment._id}/>

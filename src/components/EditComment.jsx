@@ -29,9 +29,10 @@ class EditComment extends Component {
 
     apiHandler
     .editComment(comId,{ content,rating })
-    .then(() => {
-      // this.setState({ comments:[{content:[...this.state.comments]}]});
-      window.location.reload();
+    .then((data) => {
+      console.log({data});
+      this.setState({ content: data.content,rating: data.rating });
+      // window.location.reload();
 
     })
     .catch((err) => console.log(err));
