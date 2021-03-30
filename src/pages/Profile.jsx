@@ -1,57 +1,61 @@
-import React from "react";
+import React, { Component } from 'react';
 import { withUser } from "./../components/Auth/withUser";
 import DeleteFav from "../components/DeleteFav";
 
-const Profile = (props) => {
-  console.log(props.context.user);
+class Profile extends Component {
+  state = {
+    user: null
+  }
 
-  return (
-    <div>
-      <h1>Protected profile</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Infos</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Email: </td>
-            <td> {props.context.user.email}</td>
-          </tr>
-          <tr>
-            <td>LastName: </td>
-            <td> {props.context.user.lastName}</td>
-          </tr>
-          <tr>
-            <td>FirstName: </td>
-            <td> {props.context.user.firstName}</td>
-          </tr>
-        </tbody>
-      </table>
+  componentDidMount() {
+    this.setState({ user: this.props.context.user })
+    console.log(this.props)
+  }
 
-      <h3>Mes favoris:</h3>
+  setValue() {
+    this.setState({ user: this.props.context.user })
+  }
 
-          {props.context.user.favorites.map((fav) => {
-            if (fav.favMonuments != null) {
-              return(
-                <div key={fav.favMonuments._id}>
-                <p>{fav.favMonuments.fields.tico}</p>
-                <DeleteFav id={fav._id}/>
-                </div>
-              )
-            } else if (fav.favMuseums != null) {
-              return(
-                <div key={fav.favMuseums._id}>
-                <p>{fav.favMuseums.fields.nom_du_musee}</p>
-                <DeleteFav id={fav._id}/>
-                </div>
-              )
-            }
-          })}
+  render() {
+    if (this.state.user === null) {
+      return <div>Loading...</div>;}
 
-    </div>
-  );
+    return (
+      <div>
+        <h1>{this.state.user.firstName}'s profile</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Infos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Email: </td>
+              <td> {this.state.user.email}</td>
+            </tr>
+            <tr>
+              <td>LastName: </td>
+              <td> {this.state.user.lastName}</td>
+            </tr>
+            <tr>
+              <td>FirstName: </td>
+              <td> {this.state.user.firstName}</td>
+            </tr>
+          </tbody>
+        </table>
+  
+        <h3>My fav</h3>
+  
+        <DeleteFav
+        favArray={this.state.user.favorites}
+        value={{ value: this.state.value, setValue: this.setValue}}
+      />
+
+      </div>
+    );
+  }
+
 };
 
 export default withUser(Profile);
