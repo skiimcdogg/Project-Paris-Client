@@ -46,7 +46,7 @@ initMap = (lat,lng) => {
     container: this.mapDomRef.current,
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [lng,lat],
-    zoom: 10,
+    zoom: 15,
   })
 
   // Add zoom control on the top right corner
