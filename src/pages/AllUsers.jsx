@@ -37,7 +37,7 @@ console.log(this.state.users);
 
   render() {
     if (this.state.users === null) {
-      return <div>Loading...</div>;}
+      return <div>No users yet</div>;}
 
     return (
 
