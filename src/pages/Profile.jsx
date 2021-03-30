@@ -3,7 +3,7 @@ import { withUser } from "./../components/Auth/withUser";
 import DeleteFav from "../components/DeleteFav";
 
 const Profile = (props) => {
-  console.log(props.context.user.favorites);
+  console.log(props.context.user);
 
   return (
     <div>

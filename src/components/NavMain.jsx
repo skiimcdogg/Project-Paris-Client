@@ -36,6 +36,11 @@ const NavMain = (props) => {
               </NavLink>
             </li>
             <li>
+              <NavLink to="/users">
+                {context.user.role == "admin" && "All Users"}
+              </NavLink>
+            </li>
+            <li>
               <p onClick={handleLogout}>Logout</p>
             </li>
           </React.Fragment>

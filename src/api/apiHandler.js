@@ -51,6 +51,22 @@ const apiHandler = {
       .catch(errorHandler);
   },
 
+  getUsersList() {
+    return service
+      .get("/api/user")
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  deleteUser(id) {
+    return service
+      .delete(`/api/user/delete/${id}`)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  
+
   getMuseumsList() {
     return service
       .get("/api/places/museums")
