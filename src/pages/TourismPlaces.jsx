@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import apiHandler from "../api/apiHandler";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 class TourismPlaces extends Component {
   state = {
@@ -126,7 +125,7 @@ class TourismPlaces extends Component {
             </thead>
             <tbody>
               {this.state.monuments.map((monument) => {
-                if(this.state.museumsDisplay == true) {
+                if(this.state.museumsDisplay === true) {
                 return (
                 <tr key={monument._id}>
                   <td>{monument.fields.tico} </td>
@@ -147,13 +146,13 @@ class TourismPlaces extends Component {
                     </button>{" "}
                   </td>
                 </tr>
-                )} else if (this.state.museumsDisplay == false) {
+                )} else if (this.state.museumsDisplay === false) {
                   <div> </div>
                 }
               })} 
               
               {this.state.museums.map((museum) => {
-                if(this.state.monumentsDisplay == true) {
+                if(this.state.monumentsDisplay === true) {
                   return (
 
                 <tr key={museum._id}>
@@ -173,7 +172,7 @@ class TourismPlaces extends Component {
                   </td>
                 </tr>
                   )
-                } else if(this.state.monumentsDisplay == false) {
+                } else if(this.state.monumentsDisplay === false) {
                 <div> </div>
               }
                 

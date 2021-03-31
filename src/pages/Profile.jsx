@@ -1,24 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { withUser } from "./../components/Auth/withUser";
 import DeleteFav from "../components/DeleteFav";
 
 class Profile extends Component {
   state = {
-    user: null
-  }
+    user: null,
+  };
 
   componentDidMount() {
-    this.setState({ user: this.props.context.user })
-    console.log(this.props)
-  }
-
-  setValue() {
-    this.setState({ user: this.props.context.user })
+    this.setState({ user: this.props.context.user });
   }
 
   render() {
     if (this.state.user === null) {
-      return <div>Loading...</div>;}
+      return <div>Loading...</div>;
+    }
 
     return (
       <div>
@@ -44,18 +40,12 @@ class Profile extends Component {
             </tr>
           </tbody>
         </table>
-  
-        <h3>My fav</h3>
-  
-        <DeleteFav
-        favArray={this.state.user.favorites}
-        value={{ value: this.state.value, setValue: this.setValue}}
-      />
 
+        <h3>My fav</h3>
+        <DeleteFav favArray={this.state.user.favorites}/>
       </div>
     );
   }
-
-};
+}
 
 export default withUser(Profile);

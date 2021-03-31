@@ -12,8 +12,8 @@ class AddDeleteMuseumComment extends Component {
   }
 
   componentDidMount(){
-    apiHandler.
-    getComments()
+    apiHandler
+    .getComments()
     .then((data) => {
       console.log(data);
       const thisMuseumComment = data.filter((museum)=>{

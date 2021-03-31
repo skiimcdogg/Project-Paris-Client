@@ -16,8 +16,8 @@ class AddDeleteMonumentComment extends Component {
 
 
   componentDidMount(){
-  apiHandler.
-  getComments()
+  apiHandler
+  .getComments()
   .then((data) => {
     console.log(data);
     const thisMonumentComment = data.filter((monument)=>{

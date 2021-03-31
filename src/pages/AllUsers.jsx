@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import apiHandler from '../api/apiHandler';
-import { Link } from "react-router-dom";
-import axios from "axios";
 
  class AllUsers extends Component {
 
@@ -10,8 +8,8 @@ state ={
 }
 
 componentDidMount(){
-  apiHandler.
-  getUsersList()
+  apiHandler
+  .getUsersList()
   .then((dataUsers) => {
     this.setState({ users: dataUsers.usersRes });
   })
@@ -31,9 +29,6 @@ console.log(this.state.users);
     .catch((err) => console.log(err));
     window.location.reload();
 }
-
-
-
 
   render() {
     if (this.state.users === null) {
@@ -61,11 +56,9 @@ console.log(this.state.users);
           </tbody>
         </table>
 </div>
-
        
     )
   }
 }
-
 
 export default AllUsers;

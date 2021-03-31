@@ -24,8 +24,8 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN; // NEW
 
     const id = this.props.match.params.id;
 
-    apiHandler.
-    getMonument(id)
+    apiHandler
+    .getMonument(id)
     .then((data) => {
       console.log(data.monumentsRes);
       this.setState({ Monument: data.monumentsRes});

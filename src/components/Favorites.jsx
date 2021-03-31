@@ -9,8 +9,8 @@ class Favorites extends Component {
 
         const id = this.props.match.params.id;
 
-          apiHandler.
-          addFavorites(id)
+          apiHandler
+          .addFavorites(id)
           .then((response) => {
             console.log("favorite added")
           })

@@ -37,7 +37,7 @@ const NavMain = (props) => {
             </li>
             <li>
               <NavLink to="/users">
-                {context.user.role == "admin" && "All Users"}
+                {context.user.role === "admin" && "All Users"}
               </NavLink>
             </li>
             <li>
