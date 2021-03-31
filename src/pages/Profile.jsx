@@ -15,7 +15,7 @@ class Profile extends Component {
     if (this.state.user === null) {
       return <div>Loading...</div>;
     }
-
+    // console.log(this.state.user.favorites)
     return (
       <div>
         <h1>{this.state.user.firstName}'s profile</h1>

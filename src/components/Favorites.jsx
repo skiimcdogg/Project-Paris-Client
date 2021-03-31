@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
+import { withUser } from "./Auth/withUser";
 import apiHandler from "../api/apiHandler";
 
 class Favorites extends Component {
@@ -13,6 +14,8 @@ class Favorites extends Component {
           .addFavorites(id)
           .then((response) => {
             console.log("favorite added")
+              console.log(response)
+            this.props.context.setUser(response)
           })
           .catch((error) => {
             console.log(error)
@@ -32,4 +35,4 @@ class Favorites extends Component {
     }
 }
 
-export default withRouter(Favorites);
+export default withRouter(withUser(Favorites));
