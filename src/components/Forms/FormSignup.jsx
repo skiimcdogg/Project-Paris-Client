@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter, Redirect } from "react-router-dom";
 import { withUser } from "../Auth/withUser";
 import apiHandler from "../../api/apiHandler";
+import "./../../styles/main.css"
 
 class FormSignup extends Component {
   state = {
@@ -37,40 +38,58 @@ class FormSignup extends Component {
     }
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="firstName">First Name: </label>
-        <input
-          onChange={this.handleChange}
-          value={this.state.firstName}
-          type="text"
-          id="firstName"
-          name="firstName"
-        />
-        <label htmlFor="lastName">Last Name: </label>
-        <input
-          onChange={this.handleChange}
-          value={this.state.lastName}
-          type="text"
-          id="lastName"
-          name="lastName"
-        />
-        <label htmlFor="email">Email: </label>
-        <input
-          onChange={this.handleChange}
-          value={this.state.email}
-          type="email"
-          id="email"
-          name="email"
-        />
-        <label htmlFor="password">Password: </label>
-        <input
-          onChange={this.handleChange}
-          value={this.state.password}
-          type="password"
-          id="password"
-          name="password"
-        />
-        <button>Submit</button>
+      <form className="main-form" onSubmit={this.handleSubmit}>
+        <div className="row">
+          <div className="col">
+            <div className="form-group">
+              <label htmlFor="firstName">First Name: </label>
+              <input
+                className="form-control"
+                onChange={this.handleChange}
+                value={this.state.firstName}
+                type="text"
+                id="firstName"
+                name="firstName"
+              />
+            </div>
+          </div>
+          <div className="col">
+            <div className="form-group">
+              <label htmlFor="lastName">Last Name: </label>
+              <input
+                className="form-control"
+                onChange={this.handleChange}
+                value={this.state.lastName}
+                type="text"
+                id="lastName"
+                name="lastName"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email: </label>
+          <input
+            className="form-control"
+            onChange={this.handleChange}
+            value={this.state.email}
+            type="email"
+            id="email"
+            name="email"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password: </label>
+          <input
+            className="form-control"
+            onChange={this.handleChange}
+            value={this.state.password}
+            type="password"
+            id="password"
+            name="password"
+          />
+        </div>
+        <button className="form-control btn-outline-dark">Submit</button>
       </form>
     );
   }

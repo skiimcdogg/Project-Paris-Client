@@ -2,13 +2,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
-import arc from './images/arc.png';
-
+import arc from "./images/arc.png";
 import "../styles/NavMain.css";
-
 const NavMain = (props) => {
   const { context } = props;
-
   function handleLogout() {
     apiHandler
       .logout()
@@ -19,22 +16,24 @@ const NavMain = (props) => {
         console.log(error);
       });
   }
-
-
   return (
     <nav className="NavMain">
       <NavLink exact to="/">
-      <img className='logo' src={arc} alt=""/> 
+        <img className="logo" src={arc} alt="" />
       </NavLink>
       <ul className="nav-list">
-        <li> <NavLink exact to="/places">
-        <h3 >Where to GO ?</h3>
-      </NavLink></li>
+        <li>
+          {" "}
+          <NavLink exact to="/places">
+            <h3>Where to GO ?</h3>
+          </NavLink>
+        </li>
         {context.isLoggedIn && (
           <React.Fragment>
             <li>
               <NavLink to="/profile">
-                {context.user && context.user.lastName} {context.user && context.user.firstName}
+                {context.user && context.user.lastName}{" "}
+                {context.user && context.user.firstName}
               </NavLink>
             </li>
             <li>
@@ -61,5 +60,4 @@ const NavMain = (props) => {
     </nav>
   );
 };
-
 export default withUser(NavMain);

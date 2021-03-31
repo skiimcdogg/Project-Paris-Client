@@ -38,8 +38,8 @@ console.log(this.state.users);
 
  <div> 
 
-<table>
-          <thead>
+<table className="table">
+          <thead className="thead-dark">
           <tr>
             <th>Account</th>
             <th>Delete</th>
@@ -50,7 +50,7 @@ console.log(this.state.users);
           {this.state.users.map((user) => (
           <tr key={user._id}>
             <td>{user.email} </td>
-            <td> <button value={user._id} onClick={this.deleteUser}>x</button></td>
+            <td> <button className="btn-outline-danger" value={user._id} onClick={this.deleteUser}>x</button></td>
           </tr>))}
          
           </tbody>

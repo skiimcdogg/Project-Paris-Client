@@ -3,6 +3,7 @@ import { withRouter, Redirect } from "react-router-dom";
 import apiHandler from "../../api/apiHandler";
 import { withUser } from "../Auth/withUser";
 import "./../../styles/main.css"
+import "./../../styles/basicStyles.css"
 
 class FormSignin extends Component {
   state = {
@@ -37,12 +38,16 @@ class FormSignin extends Component {
     }
 
     return (
-      <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
+      <form className="main-form" onChange={this.handleChange} onSubmit={this.handleSubmit}>
+        <div className="form-group">
         <label htmlFor="email">Email</label>
         <input className="form-control" type="email" id="email" name="email" />
+        </div>
+        <div className="form-group">
         <label htmlFor="password">Password</label>
         <input className="form-control" type="password" id="password" name="password" />
-        <button>Submit</button>
+        </div>
+        <button className="form-control btn-outline-dark">Log In</button>
       </form>
     );
   }
