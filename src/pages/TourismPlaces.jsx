@@ -8,6 +8,8 @@ class TourismPlaces extends Component {
     museums: null,
     monumentsDisplay: true,
     museumsDisplay: true,
+    isShow:false, 
+    setIsShow:false,
   };
 
   componentDidMount() {
@@ -81,14 +83,18 @@ class TourismPlaces extends Component {
       });
   };
 
+
+
+
   render() {
     if (this.state.monuments === null || this.state.museums === null) {
       return <div>Loading...</div>;
     }
 
     return (
+     <div>
+
       <div>
-        <div>
           <input
             placeholder="Search"
             value={
@@ -96,29 +102,28 @@ class TourismPlaces extends Component {
             }
             onChange={this.searchPlaces}
             type="text"
-          />
-        </div>
-        <div>
+          />   
+           <div>
           <label>Only Monuments </label>
           <input
             onChange={this.displayMonuments}
-            type="checkbox"
-          />
-        </div>
-
-        <div>
+            type="checkbox"/>
+      </div>
+    <div>
           <label>Only Museums </label>
           <input
             onChange={this.displayMuseums}
             type="checkbox"
           />
         </div>
+       </div>
+      <div >  
 
         <div>
           <table>
             <thead>
               <tr>
-                <th>Name</th>
+                <th >Name</th>
                 <th>Google Maps Direction</th>
                 <th>Detail</th>
               </tr>
@@ -137,13 +142,13 @@ class TourismPlaces extends Component {
                     </a>
                   </td>
                   <td>
-                    {" "}
+                    
                     <button>
                       <Link to={`/places/monument/${monument._id}`}>
-                        {" "}
+                      
                         Detail
                       </Link>
-                    </button>{" "}
+                    </button>
                   </td>
                 </tr>
                 )} else if (this.state.museumsDisplay === false) {
@@ -180,6 +185,7 @@ class TourismPlaces extends Component {
             </tbody>
           </table>
         </div>
+      </div>
       </div>
     );
   }
