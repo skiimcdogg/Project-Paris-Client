@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import EditComment from './EditComment';
 import apiHandler from '../api/apiHandler';
+import { withUser } from "../components/Auth/withUser";
+
 
 class AddDeleteMonumentComment extends Component {
 
@@ -10,9 +12,6 @@ class AddDeleteMonumentComment extends Component {
     rating:"",
   }
 
-  // setValue() {
-  //   this.setState({ comments: this.state.comments })
-  // }
 
 
   componentDidMount(){
@@ -96,31 +95,43 @@ class AddDeleteMonumentComment extends Component {
     return (
       
       <div>
-        <input name="content" type="text" value={this.state.content} onChange={this.handleChange}></input>
-        <button onClick={this.handleSubmit} >add</button>
-        <div>
-          <label for="ratestar">rate:</label>
-            <select value={this.state.rating} onChange={this.getRate}>
-            <option name="rating" >Evaluate</option>
-              <option name="rating" value="1">1</option>
-              <option name="rating" value="2">2</option>
-              <option name="rating" value="3">3</option>
-              <option name="rating" value='4'>4</option>
-              <option name="rating" value="5" >5</option>
-            </select>
+
+        {this.props.context.isLoggedIn &&(
+          <div><input name="content" type="text" value={this.state.content} onChange={this.handleChange}/>
+          <button onClick={this.handleSubmit} >add</button>
+          <div>
+           <label for="ratestar">rate:</label>
+             <select value={this.state.rating} onChange={this.getRate}>
+             <option name="rating" >Evaluate</option>
+               <option name="rating" value="1">1</option>
+               <option name="rating" value="2">2</option>
+               <option name="rating" value="3">3</option>
+               <option name="rating" value='4'>4</option>
+               <option name="rating" value="5" >5</option>
+             </select>
+           </div>
           </div>
+           
+        )}      
+       
           {this.state.comments.map((comment) => (
+            
              <div key={comment._id}>
              <h3>All comments from visitors</h3>
-             <h4>user:{comment.user.firstName}{comment.user.lastName} </h4>
+             <h4>user:{comment.user.firstName}{comment.user.lastName}{comment.user._id}</h4>
              <p>comment:{comment.content}</p>
              <h2>your rate: {comment.rating}</h2>  
-             <EditComment id={comment._id}/>
-             <button value={comment._id} onClick={this.deleteComment}>x</button>
+             <EditComment 
+             id={comment._id} 
+             userId={comment.user._id}/>
+            
+             {this.props.context.isLoggedIn && this.props.context.user._id === comment.user._id && (
+             <button value={comment._id} onClick={this.deleteComment}>x</button>)}
+         
          </div>  ))}
       </div>
     )
   }
 }
 
-export default AddDeleteMonumentComment;
+export default  withUser(AddDeleteMonumentComment);

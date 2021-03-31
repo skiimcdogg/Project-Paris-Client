@@ -5,6 +5,7 @@ import "mapbox-gl/src/css/mapbox-gl.css"; //NEW
 import { Link } from "react-router-dom";
 import AddDeleteMonumentComment from './../components/AddDeleteMonumentComment';
 import Favorites from "../components/Favorites";
+import { withUser } from "../components/Auth/withUser";
 
 // mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default; 
 // Inform your Mapbox token (https://www.mapbox.com/account/)
@@ -73,7 +74,7 @@ initMap = (lat,lng) => {
         <h3> Adress: <br/> {this.state.Monument.fields.wadrs}</h3>
         <div ref={this.mapDomRef} style={{height: 400, width: "100%"}}></div>
         <AddDeleteMonumentComment id={this.props.match.params.id}/>
-        <Favorites />
+        {this.props.context.isLoggedIn &&(<Favorites />)}
         <Link to="/places">Back to list</Link>
       </div>
     )
@@ -81,4 +82,4 @@ initMap = (lat,lng) => {
 }
 
 
-export default MonumentDetail;
+export default  withUser(MonumentDetail);

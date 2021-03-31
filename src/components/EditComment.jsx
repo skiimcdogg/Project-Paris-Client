@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import apiHandler from '../api/apiHandler';
+import { withUser } from "../components/Auth/withUser";
 
 class EditComment extends Component {
+
   state = {
     content :"",
     rating:"",
   }
-
 
   handleChange = (event) => {
     const { name, value } = event.target;
@@ -22,8 +23,10 @@ class EditComment extends Component {
     this.setState({ rating: ratingValue, });
   }
 
+
+
   editComment =(event)=>{
-    const comId = this.props.id
+    const comId = event.target.value;
     const { content,rating } = this.state;
 
     apiHandler
@@ -42,25 +45,29 @@ class EditComment extends Component {
   }
 
   render() {
-  
+  console.log(this.props.useId)
+  console.log(this.props.id)
     return (
       <div>
-    <input type="text" name="content" value={this.state.content} onChange={this.handleChange}/>
-    <div>
-          <label for="ratestar">rate:</label>
-            <select value={this.state.rating} onChange={this.getRate}>
-              <option name="rating" >Evaluate</option>
-              <option name="rating" value="1">1</option>
-              <option name="rating" value="2">2</option>
-              <option name="rating" value="3">3</option>
-              <option name="rating" value='4'>4</option>
-              <option name="rating" value="5" >5</option>
-            </select>
-          </div>
-  <button onClick={this.editComment}>modify</button>
-      </div>
+       
+      {this.props.context.isLoggedIn && this.props.context.user._id === this.props.userId && (
+         <div key={this.props.userId}>
+         <input type="text" name="content" value={this.state.content} onChange={this.handleChange}/>
+                  <label for="ratestar">rate:</label>
+                    <select value={this.state.rating} onChange={this.getRate}>
+                      <option name="rating" >Evaluate</option>
+                      <option name="rating" value="1">1</option>
+                      <option name="rating" value="2">2</option>
+                      <option name="rating" value="3">3</option>
+                      <option name="rating" value='4'>4</option>
+                      <option name="rating" value="5" >5</option>
+                    </select>
+                    <button value={this.props.id} onClick={this.editComment}>modify</button> 
+         </div>
+            )}
+       </div>
     )
   }
 }
 
-export default EditComment;
+export default withUser(EditComment);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import EditComment from './EditComment.jsx';
 import apiHandler from '../api/apiHandler';
+import { withUser } from "../components/Auth/withUser";
 
 class AddDeleteMuseumComment extends Component {
 
@@ -92,7 +93,8 @@ class AddDeleteMuseumComment extends Component {
     return (
       
       <div>
-        <input name="content" type="text" value={this.state.content} onChange={this.handleChange}></input>
+        {this.props.context.isLoggedIn &&(  <div>
+          <input name="content" type="text" value={this.state.content} onChange={this.handleChange}></input>
         <button onClick={this.handleSubmit} >add</button>
         <div>
           <label for="ratestar">rate:</label>
@@ -105,7 +107,8 @@ class AddDeleteMuseumComment extends Component {
               <option name="rating" value="5" >5</option>
             </select>
           </div>
-       
+        </div>)}
+  
         
           {this.state.comments.map((comment) => (
              <div key={comment._id}>
@@ -113,12 +116,15 @@ class AddDeleteMuseumComment extends Component {
              <h4>user:{comment.user.firstName}{comment.user.lastName}</h4>
              <p>comment:{comment.content}</p>
              <h2>your rate: {comment.rating}</h2>  
-             <EditComment content={this.state.content} rating={this.state.rating} comArray={this.state.comments}  id={comment._id}/>
-             <button value={comment._id} onClick={this.deleteComment}>x</button>
+             <EditComment  
+             id={comment._id} 
+             userId={comment.user._id}/>
+             {this.props.context.isLoggedIn && this.props.context.user._id === comment.user._id && (
+             <button value={comment._id} onClick={this.deleteComment}>x</button>)}
          </div>  ))}
       </div>
     )
   }
 }
 
-export default AddDeleteMuseumComment;
+export default withUser(AddDeleteMuseumComment);
