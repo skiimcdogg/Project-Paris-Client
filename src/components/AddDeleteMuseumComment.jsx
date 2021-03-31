@@ -56,6 +56,7 @@ class AddDeleteMuseumComment extends Component {
     
     this.setState({
       content: '',
+      rating:'',
     });
   }
 
@@ -112,7 +113,7 @@ class AddDeleteMuseumComment extends Component {
              <h4>user:{comment.user.firstName}{comment.user.lastName}</h4>
              <p>comment:{comment.content}</p>
              <h2>your rate: {comment.rating}</h2>  
-             <EditComment comArray={this.state.comments} id={comment._id}/>
+             <EditComment content={this.state.content} rating={this.state.rating} comArray={this.state.comments}  id={comment._id}/>
              <button value={comment._id} onClick={this.deleteComment}>x</button>
          </div>  ))}
       </div>

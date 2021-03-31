@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import apiHandler from '../api/apiHandler';
 
 class EditComment extends Component {
-
   state = {
     content :"",
     rating:"",
@@ -30,15 +29,20 @@ class EditComment extends Component {
     apiHandler
     .editComment(comId,{ content,rating })
     .then((data) => {
-      console.log({data});
-      this.setState({ content: data.content,rating: data.rating });
-      // window.location.reload();
+      console.log(data);
+      this.setState({data});
+      window.location.reload();
 
     })
     .catch((err) => console.log(err));
+    this.setState({
+      content: '',
+      rating:'',
+    });
   }
 
   render() {
+  
     return (
       <div>
     <input type="text" name="content" value={this.state.content} onChange={this.handleChange}/>

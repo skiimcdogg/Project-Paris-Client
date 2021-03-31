@@ -54,6 +54,7 @@ class AddDeleteMonumentComment extends Component {
     
     this.setState({
       content: '',
+      rating:"",
     });
 
   }
