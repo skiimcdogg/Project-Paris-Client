@@ -10,11 +10,15 @@ import MuseumDetail from "./pages/MuseumDetail";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
 import AllUsers from "./pages/AllUsers";
+import {withRouter} from "react-router-dom";
 
 function App() {
+ 
+
   return (
     <div className="App">
-      <NavMain />
+    
+    <NavMain />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/signin" component={Signin} />
@@ -29,4 +33,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);

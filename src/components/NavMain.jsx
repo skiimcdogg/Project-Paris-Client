@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
+import arc from './images/arc.png';
 
 import "../styles/NavMain.css";
 
@@ -19,15 +20,16 @@ const NavMain = (props) => {
       });
   }
 
+
   return (
     <nav className="NavMain">
       <NavLink exact to="/">
-        <h3 className="logo">App name</h3>
-      </NavLink>
-      <NavLink exact to="/places">
-        <h3 >Where to GO ?</h3>
+      <img className='logo' src={arc} alt=""/> 
       </NavLink>
       <ul className="nav-list">
+        <li> <NavLink exact to="/places">
+        <h3 >Where to GO ?</h3>
+      </NavLink></li>
         {context.isLoggedIn && (
           <React.Fragment>
             <li>
