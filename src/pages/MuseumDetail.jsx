@@ -54,7 +54,7 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN; // NEW
 
 
 
-initMap = (lat,lng) => {
+initMap = (lng,lat) => {
   // NEW METHOD
   // Embed the map where "mapDomRef" is defined in the render
   this.map = new mapboxgl.Map({
