@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import apiHandler from '../api/apiHandler';
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl' // NEW
 import "mapbox-gl/src/css/mapbox-gl.css"; //NEW
-import { Link } from "react-router-dom";
+import { Link,withRouter } from "react-router-dom";
 import AddDeleteMonumentComment from './../components/AddDeleteMonumentComment';
 import Favorites from "../components/Favorites";
 import { withUser } from "../components/Auth/withUser";
@@ -93,4 +93,4 @@ initMap = (lat,lng) => {
 }
 
 
-export default  withUser(MonumentDetail);
+export default  withRouter(withUser(MonumentDetail));

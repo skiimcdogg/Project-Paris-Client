@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import apiHandler from '../api/apiHandler';
-import { Link } from "react-router-dom";
+import { Link,withRouter } from "react-router-dom";
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl' // NEW
 import "mapbox-gl/src/css/mapbox-gl.css"; //NEW
 import AddDeleteMuseumComment from './../components/AddDeleteMuseumComment';
@@ -93,4 +93,4 @@ initMap = (lat,lng) => {
   }
 }
 
-export default withUser(MuseumDetail);
+export default withRouter(withUser(MuseumDetail));

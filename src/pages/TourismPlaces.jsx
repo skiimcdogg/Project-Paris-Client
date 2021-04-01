@@ -11,8 +11,6 @@ class TourismPlaces extends Component {
     museums: null,
     monumentsDisplay: true,
     museumsDisplay: true,
-    isShow:false, 
-    setIsShow:false,
   };
 
   componentDidMount() {
