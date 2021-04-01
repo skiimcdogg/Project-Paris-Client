@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import apiHandler from "../api/apiHandler";
 import { Link } from "react-router-dom";
+import "../styles/places.css";
 
 class TourismPlaces extends Component {
   state = {
@@ -94,8 +95,9 @@ class TourismPlaces extends Component {
     return (
      <div>
 
-      <div>
-          <input
+      <div className="search-container">
+          <input 
+          className="searchBar"
             placeholder="Search"
             value={
               this.state.monuments.monumentsRes || this.state.museums.museumsRes
@@ -103,24 +105,29 @@ class TourismPlaces extends Component {
             onChange={this.searchPlaces}
             type="text"
           />   
-           <div>
-          <label>Only Monuments </label>
-          <input
+           <div className="row">
+             <div className="checkSearch"> 
+             <label>Only Monuments </label>
+             <input 
             onChange={this.displayMonuments}
-            type="checkbox"/>
-      </div>
-    <div>
-          <label>Only Museums </label>
-          <input
+            type="checkbox"/></div>
+         <div className="checkSearch"> 
+         <label>Only Museums </label>
+          <input 
             onChange={this.displayMuseums}
             type="checkbox"
           />
-        </div>
+          </div>
+           
+      </div>
+    
        </div>
       <div >  
 
-        <div>
-          <table>
+        <div className="grid-column" style={{ 
+          maxHeight: '90vh',
+          overflow: 'scroll',}}>
+          <table >
             <thead>
               <tr>
                 <th >Name</th>
@@ -138,12 +145,12 @@ class TourismPlaces extends Component {
                     <a
                       href={`https://www.google.com/maps/dir//${monument.fields.coordonnees_ban}`}
                     >
-                      {monument.fields.coordonnees_ban}
+                      {monument.fields.wadrs}
                     </a>
                   </td>
-                  <td>
+                  <td className='center'>
                     
-                    <button>
+                    <button className='btn-detail'>
                       <Link to={`/places/monument/${monument._id}`}>
                       
                         Detail
@@ -166,14 +173,14 @@ class TourismPlaces extends Component {
                     <a
                       href={`https://www.google.com/maps/dir//${museum.fields.coordonnees_finales}`}
                     >
-                      {museum.fields.coordonnees_finales}
+                      {museum.fields.adr}
                     </a>
                   </td>
-                  <td>
-                    {" "}
-                    <button>
+                  <td className='center'>
+                    
+                    <button className='btn-detail'>
                       <Link to={`/places/museum/${museum._id}`}> Detail</Link>
-                    </button>{" "}
+                    </button>
                   </td>
                 </tr>
                   )
