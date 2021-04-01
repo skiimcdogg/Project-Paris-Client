@@ -4,6 +4,9 @@ import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
 import arc from "./images/arc.png";
 import "../styles/NavMain.css";
+
+
+
 const NavMain = (props) => {
   const { context } = props;
   function handleLogout() {
@@ -24,20 +27,20 @@ const NavMain = (props) => {
       <ul className="nav-list">
         <li>
           {" "}
-          <NavLink exact to="/places">
-            <h3>Where to GO ?</h3>
+          <NavLink className="block" exact to="/places">
+            Where to GO ?
           </NavLink>
         </li>
         {context.isLoggedIn && (
           <React.Fragment>
             <li>
-              <NavLink to="/profile">
+              <NavLink className="block" to="/profile">
                 {context.user && context.user.lastName}{" "}
                 {context.user && context.user.firstName}
               </NavLink>
             </li>
             <li>
-              <NavLink to="/users">
+              <NavLink className="block" to="/users">
                 {context.user.role === "admin" && "All Users"}
               </NavLink>
             </li>

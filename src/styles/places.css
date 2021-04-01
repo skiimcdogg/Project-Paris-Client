@@ -2,19 +2,20 @@ table{
   margin-left: 2%;
 }
 
-td{
-  width: 20vw;
+td,th{
+  width: 25vw;
+  height: 10vh;
+  margin-right: 2%;
 }
-th{
-  width: 20vw;
-}
+
 .center{
   text-align: center;
 }
-/* .row{
-  display: flex;
-  flex-direction: row;
-} */
+
+.monument-icon{
+  width: 10%;
+  margin: 0 auto;
+}
 
 .btn-detail{
   background-color: transparent;
@@ -23,12 +24,8 @@ th{
   padding:2%;
 }
 
-.btn-detail:hover{
-  background-color: transparent;
-  border: wheat 1px solid;
-  border-radius: 3px;
-  padding:3%;
-  font-weight: bold;
+.monument-icon:hover{
+ width: 12%;
 }
 
 .search-container{

@@ -4,6 +4,8 @@ import { Link ,withRouter, Route} from "react-router-dom";
 import "../styles/places.css";
 import MonumentDetail from "./MonumentDetail";
 import MuseumDetail from "./MuseumDetail";
+import landmark from "./../components/images/landmark.png";
+
 
 class TourismPlaces extends Component {
   state = {
@@ -149,13 +151,10 @@ class TourismPlaces extends Component {
                     </a>
                   </td>
                   <td className='center'>
-                    
-                    <button className='btn-detail'>
                       <Link exact to={`/places/${monument._id}/monument`}>
-                      
-                        Detail
+                      <img className="monument-icon" src={landmark} alt=""/>
                       </Link>
-                    </button>
+                   
                   </td>
                 </tr>
                 )} else if (this.state.museumsDisplay === false) {
@@ -179,7 +178,7 @@ class TourismPlaces extends Component {
                   <td className='center'>
                     
                     <button className='btn-detail'>
-                      <Link exact to={`/places/${museum._id}/museum`}> Detail</Link>
+                      <Link exact to={`/places/${museum._id}/museum`}> <img className="monument-icon" src={landmark} alt=""/></Link>
                     </button>
                   </td>
                 </tr>
