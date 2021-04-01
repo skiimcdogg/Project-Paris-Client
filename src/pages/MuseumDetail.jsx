@@ -21,7 +21,7 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN; // NEW
   map =React.createRef(null).current //NEW
   marker = React.createRef(null).current //NEW
 
-  componentDidMount(){
+  getMuseum(){
 
     const id = this.props.match.params.id;
 
@@ -35,7 +35,21 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN; // NEW
 
     })
     .catch((err) => console.log(err));
+  }
+
+
+  componentDidMount(){
+      this.getMuseum();
 }
+
+
+  componentDidUpdate(prevProps, prevState){
+    console.log("I am upodating, look at my beautiful props changing !", this.props.match.params.id, "what do i do with this ?")
+
+    if (prevProps.match.params.id !== this.props.match.params.id ){
+      this.getMuseum();
+    }
+  }
 
 
 

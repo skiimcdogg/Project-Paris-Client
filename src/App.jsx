@@ -5,8 +5,6 @@ import Home from "./pages/Home";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import TourismPlaces from "./pages/TourismPlaces";
-import MonumentDetail from "./pages/MonumentDetail";
-import MuseumDetail from "./pages/MuseumDetail";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
 import AllUsers from "./pages/AllUsers";
@@ -24,9 +22,8 @@ function App() {
         <Route exact path="/signin" component={Signin} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/users" component={AllUsers} />
-        <Route exact path="/places" component={TourismPlaces} />
-        <Route exact path="/places/monument/:id" component={MonumentDetail} />
-        <Route exact path="/places/museum/:id" component={MuseumDetail}  />
+        <Route  path="/places" component={TourismPlaces} />
+ 
         <ProtectedRoute exact path="/profile" component={Profile} />
       </Switch>
     </div>

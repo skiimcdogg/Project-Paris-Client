@@ -21,10 +21,9 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN; // NEW
   map =React.createRef(null).current //NEW
   marker = React.createRef(null).current //NEW
 
-  componentDidMount(){
-
+  getMonument(){
+  
     const id = this.props.match.params.id;
-
     apiHandler
     .getMonument(id)
     .then((data) => {
@@ -34,12 +33,24 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN; // NEW
       this.initMap(lng,lat) // NEW
     })
     .catch((err) => console.log(err));
-
-
-
+  
+  
+  
   }
-
-
+  
+    componentDidMount(){
+      this.getMonument();
+  
+    }
+  
+  
+  
+    componentDidUpdate(prevProps, prevState){
+      if (prevProps.match.params.id!==this.props.match.params.id ){
+        this.getMonument();
+      }
+    
+    }
 
 
 initMap = (lat,lng) => {

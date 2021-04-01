@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import apiHandler from "../api/apiHandler";
-import { Link } from "react-router-dom";
+import { Link ,withRouter, Route} from "react-router-dom";
 import "../styles/places.css";
+import MonumentDetail from "./MonumentDetail";
+import MuseumDetail from "./MuseumDetail";
 
 class TourismPlaces extends Component {
   state = {
@@ -122,12 +124,12 @@ class TourismPlaces extends Component {
       </div>
     
        </div>
-      <div >  
+      <div className="row" >  
 
-        <div className="grid-column" style={{ 
+        <div className="col-5" style={{ 
           maxHeight: '90vh',
           overflow: 'scroll',}}>
-          <table >
+          <table className="list-group" >
             <thead>
               <tr>
                 <th >Name</th>
@@ -151,7 +153,7 @@ class TourismPlaces extends Component {
                   <td className='center'>
                     
                     <button className='btn-detail'>
-                      <Link to={`/places/monument/${monument._id}`}>
+                      <Link exact to={`/places/${monument._id}/monument`}>
                       
                         Detail
                       </Link>
@@ -179,7 +181,7 @@ class TourismPlaces extends Component {
                   <td className='center'>
                     
                     <button className='btn-detail'>
-                      <Link to={`/places/museum/${museum._id}`}> Detail</Link>
+                      <Link exact to={`/places/${museum._id}/museum`}> Detail</Link>
                     </button>
                   </td>
                 </tr>
@@ -192,6 +194,8 @@ class TourismPlaces extends Component {
             </tbody>
           </table>
         </div>
+          <Route exact path="/places/:id/:type(museum|monument)" component={Building} />
+
       </div>
       </div>
     );
@@ -199,3 +203,15 @@ class TourismPlaces extends Component {
 }
 
 export default TourismPlaces;
+
+
+const Building =withRouter((props) => {
+
+  if(props.match.params.type === "museum"){
+    return <MuseumDetail  />
+  }else{
+    return <MonumentDetail />
+  }
+
+
+})
