@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { withUser } from "./Auth/withUser";
 import apiHandler from "../api/apiHandler";
 import heart from "./images/heart.png";
+import "../styles/favorites.css";
 
 class Favorites extends Component {
 
@@ -25,11 +26,11 @@ class Favorites extends Component {
     
     render() {
         return(
-            <div>
+            <div className="fav-div">
                 <form onSubmit={this.handleSubmit}>
                 <input type="hidden" name="favMuseums" value={this.props.match.params.id}/>
                 <input type="hidden" name="favMonuments" value={this.props.match.params.id}/>
-                <button><img className="logo" src={heart} alt="like"/></button>
+                <button className="fav-btn"><img className="fav" src={heart} alt="like"/></button>
                 </form>
             </div>
         )

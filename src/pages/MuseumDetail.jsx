@@ -7,7 +7,7 @@ import AddDeleteMuseumComment from './../components/AddDeleteMuseumComment';
 import Favorites from "../components/Favorites";
 import { withUser } from "../components/Auth/withUser";
 
-mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default; 
+// mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default; 
 // Inform your Mapbox token (https://www.mapbox.com/account/)
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN; // NEW
 

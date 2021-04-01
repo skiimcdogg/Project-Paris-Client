@@ -1,0 +1,29 @@
+.fav {
+    width: 7%;
+}
+
+.fav-btn {
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+
+.fav-btn:hover {
+    cursor: pointer;
+}
+
+.fav-btn:active {
+    opacity: 0;
+    width: 50%;
+    transition: all 0.4s;
+  }
+  
+  .fav-btn:active:after {
+    opacity: 1;
+    transition: 0s
+  }
+
+  .star {
+      color:gold;
+      font-size: 175%;
+  }
