@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import apiHandler from '../api/apiHandler';
+import "../styles/All-users.css";
 
  class AllUsers extends Component {
 
@@ -38,12 +39,11 @@ console.log(this.state.users);
 
  <div> 
 
-<table className="table">
+<table className="table table-hover table-bordered with-margin">
           <thead className="thead-dark">
-          <tr>
+          <tr>  
             <th>Account</th>
-            <th>Delete</th>
-            
+            <th>Delete</th>  
           </tr>
           </thead>
           <tbody>
