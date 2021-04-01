@@ -129,7 +129,7 @@ class TourismPlaces extends Component {
         <div className="col-5" style={{ 
           maxHeight: '90vh',
           overflow: 'scroll',}}>
-          <table className="list-group" >
+          <table className="list-group table-places" >
             <thead >
               <tr >
                 <th >Name</th>

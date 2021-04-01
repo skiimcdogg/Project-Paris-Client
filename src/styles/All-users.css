@@ -1,0 +1,24 @@
+.with-margin {
+  margin-top: 4%;
+}
+
+.display-title {
+  margin-top: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mid-size {
+  max-width: 10%;
+}
+
+.display-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.some-margin {
+  margin: 0.8%;
+}

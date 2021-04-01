@@ -3,6 +3,8 @@ import { withRouter } from "react-router-dom";
 import apiHandler from "../api/apiHandler";
 import { withUser } from "./Auth/withUser";
 
+import "./../styles/All-users.css"
+
 class DeleteFav extends Component {
   state = {
     favorites: [],
@@ -42,11 +44,12 @@ class DeleteFav extends Component {
         {this.state.favorites.map((fav) => {
           if (fav.favMonuments != null) {
             return (
-              <div key={fav._id}>
-                <p>{fav.favMonuments.fields.tico}</p>
-                <button onClick={this.handleClick} value={fav._id}>
+              <div className=" display-button list-group" key={fav._id}>
+                <p className="some-margin">{fav.favMonuments.fields.tico}</p>
+                <button className="btn-outline-dark display-button mid-size" onClick={this.handleClick} value={fav._id}>
                   Delete
                 </button>
+                <hr></hr>
               </div>
             );
           } else if (fav.favMuseums != null) {

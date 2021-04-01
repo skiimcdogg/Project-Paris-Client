@@ -17,11 +17,11 @@ class Profile extends Component {
     }
     return (
       <div>
-        <h1>{this.state.user.firstName}'s profile</h1>
-        <table>
-          <thead>
+        <h1 className="display-title">{this.state.user.firstName}'s profile</h1>
+        <table className="table table-hover table-bordered with-margin">
+          <thead className="thead-dark">
             <tr>
-              <th>Infos</th>
+              <th colSpan="2">Infos</th>
             </tr>
           </thead>
           <tbody>
@@ -40,7 +40,7 @@ class Profile extends Component {
           </tbody>
         </table>
 
-        <h3>My fav</h3>
+        <h3 className="display-title">My favorites places</h3>
         <DeleteFav favArray={this.state.user.favorites}/>
       </div>
     );
