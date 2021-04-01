@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import EditComment from './EditComment';
 import apiHandler from '../api/apiHandler';
 import { withUser } from "../components/Auth/withUser";
-
+import Rating from './Rating';
 
 class AddDeleteMonumentComment extends Component {
 
@@ -12,23 +12,17 @@ class AddDeleteMonumentComment extends Component {
     rating:"",
   }
 
-
-
   componentDidMount(){
   apiHandler
   .getComments()
   .then((data) => {
-    console.log(data);
     const thisMonumentComment = data.filter((monument)=>{
       if(this.props.id ===monument.placeMonument) return monument   
     }) 
-    console.log(thisMonumentComment);
     this.setState({ comments: thisMonumentComment});
   })
   .catch((err) => console.log(err));
-
   }
-
 
   handleChange = (event) => {
     const { name, value } = event.target;
@@ -45,8 +39,6 @@ class AddDeleteMonumentComment extends Component {
   apiHandler
   .addCommentMonument(id,{ content,rating })
     .then((data) => {
-      console.log(data);
-      console.log({data,...this.state.comments});
       this.setState({ comments:[data,...this.state.comments]});
     })
     .catch((err) => console.log(err));
@@ -55,12 +47,10 @@ class AddDeleteMonumentComment extends Component {
       content: '',
       rating:"",
     });
-
   }
+
   getRate =(event)=>{
     const ratingValue = event.target.value;
-    console.log(ratingValue);
-    console.log(event.target.value);
     this.setState({ rating: ratingValue, });
   }
 
@@ -71,34 +61,27 @@ class AddDeleteMonumentComment extends Component {
     apiHandler
     .deleteComment(comId)
     .then((commentDB) => {
-
-      console.log(commentDB);
       const copyArray = this.state.comments;
       const filterdArr = copyArray.filter((comment) => { 
-        console.log(comment);
         const deleteId = commentDB._id
        return comment._id !== deleteId}
       ) 
       this.setState({ comments:filterdArr});
-      console.log("pourquoi rafraichi pas");
     })
     .catch((err) => console.log(err));
     
-    // window.location.reload();
-    // })
   }
 
-
   render() {
-    
     
     return (
       
       <div>
 
         {this.props.context.isLoggedIn &&(
-          <div><input name="content" type="text" value={this.state.content} onChange={this.handleChange}/>
-          <button onClick={this.handleSubmit} >add</button>
+          <div>
+          <h2>Add a comment</h2>
+          <input name="content" type="text" value={this.state.content} onChange={this.handleChange}/>
           <div>
            <label for="ratestar">rate:</label>
              <select value={this.state.rating} onChange={this.getRate}>
@@ -110,6 +93,7 @@ class AddDeleteMonumentComment extends Component {
                <option name="rating" value="5" >5</option>
              </select>
            </div>
+           <button onClick={this.handleSubmit} >add</button>
           </div>
            
         )}      
@@ -118,9 +102,9 @@ class AddDeleteMonumentComment extends Component {
             
              <div key={comment._id}>
              <h3>All comments from visitors</h3>
-             <h4>user:{comment.user.firstName}{comment.user.lastName}{comment.user._id}</h4>
-             <p>comment:{comment.content}</p>
-             <h2>your rate: {comment.rating}</h2>  
+             <h4>user: {comment.user.firstName} {comment.user.lastName}</h4>
+             <p>comment: {comment.content}</p>
+             <h4>rate:</h4> <Rating>{comment.rating}</Rating>
              <EditComment 
              id={comment._id} 
              userId={comment.user._id}/>
@@ -128,7 +112,8 @@ class AddDeleteMonumentComment extends Component {
              {this.props.context.isLoggedIn && this.props.context.user._id === comment.user._id && (
              <button value={comment._id} onClick={this.deleteComment}>x</button>)}
          
-         </div>  ))}
+         </div>
+        ))}
       </div>
     )
   }

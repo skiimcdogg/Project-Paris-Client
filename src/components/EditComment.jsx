@@ -52,6 +52,7 @@ class EditComment extends Component {
        
       {this.props.context.isLoggedIn && this.props.context.user._id === this.props.userId && (
          <div key={this.props.userId}>
+           <h2>Edit your comment</h2>
          <input type="text" name="content" value={this.state.content} onChange={this.handleChange}/>
                   <label for="ratestar">rate:</label>
                     <select value={this.state.rating} onChange={this.getRate}>

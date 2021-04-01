@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import { withUser } from "./Auth/withUser";
 import apiHandler from "../api/apiHandler";
+import heart from "./images/heart.png";
 
 class Favorites extends Component {
 
@@ -28,7 +29,7 @@ class Favorites extends Component {
                 <form onSubmit={this.handleSubmit}>
                 <input type="hidden" name="favMuseums" value={this.props.match.params.id}/>
                 <input type="hidden" name="favMonuments" value={this.props.match.params.id}/>
-                <button> Add to favorites </button>
+                <button><img className="logo" src={heart} alt="like"/></button>
                 </form>
             </div>
         )

@@ -72,9 +72,9 @@ initMap = (lat,lng) => {
       <div key={this.state.Monument._id}>
         <h1>{this.state.Monument.fields.tico}</h1>
         <h3> Adress: <br/> {this.state.Monument.fields.wadrs}</h3>
+        {this.props.context.isLoggedIn &&(<Favorites />)}
         <div ref={this.mapDomRef} style={{height: 400, width: "100%"}}></div>
         <AddDeleteMonumentComment id={this.props.match.params.id}/>
-        {this.props.context.isLoggedIn &&(<Favorites />)}
         <Link to="/places">Back to list</Link>
       </div>
     )

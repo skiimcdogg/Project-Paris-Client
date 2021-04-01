@@ -70,9 +70,9 @@ initMap = (lat,lng) => {
         <h3> Adress:<br/>  {this.state.Museum.fields.adr}</h3>
         <p>Ouverture:<br/> {this.state.Museum.fields.periode_ouverture}</p>
         <p>Fermeture annuelle:  <br/> {this.state.Museum.fields.fermeture_annuelle}</p>
+        {this.props.context.isLoggedIn &&(<Favorites />)}
         <div ref={this.mapDomRef} style={{height: 400, width: "100%"}}></div>
         <AddDeleteMuseumComment id={this.props.match.params.id}/>
-        {this.props.context.isLoggedIn &&(<Favorites />)}
         <Link to="/places">Back to list</Link>
       </div>
     )
