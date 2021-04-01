@@ -5,6 +5,9 @@ table{
 td{
   width: 20vw;
 }
+th{
+  width: 20vw;
+}
 .center{
   text-align: center;
 }

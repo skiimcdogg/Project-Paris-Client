@@ -80,7 +80,7 @@ initMap = (lat,lng) => {
       return <div>Loading...</div>;}
 
     return (
-      <div key={this.state.Monument._id}>
+      <div className='col-7' key={this.state.Monument._id}>
         <h1>{this.state.Monument.fields.tico}</h1>
         <h3> Adress: <br/> {this.state.Monument.fields.wadrs}</h3>
         {this.props.context.isLoggedIn &&(<Favorites />)}

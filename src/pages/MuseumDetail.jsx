@@ -79,7 +79,7 @@ initMap = (lat,lng) => {
       if ( this.state.Museum === null ) {
       return <div>Loading...</div>;}
     return (
-      <div>
+      <div className='col-7'>
          <h1>{this.state.Museum.fields.nom_du_musee}</h1>
         <h3> Adress:<br/>  {this.state.Museum.fields.adr}</h3>
         <p>Ouverture:<br/> {this.state.Museum.fields.periode_ouverture}</p>

@@ -128,10 +128,10 @@ class TourismPlaces extends Component {
           maxHeight: '90vh',
           overflow: 'scroll',}}>
           <table className="list-group" >
-            <thead>
-              <tr>
+            <thead >
+              <tr >
                 <th >Name</th>
-                <th>Google Maps Direction</th>
+                <th>Adress</th>
                 <th>Detail</th>
               </tr>
             </thead>
