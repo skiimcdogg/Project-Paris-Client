@@ -104,11 +104,14 @@ class AddDeleteMuseumComment extends Component {
              <h4>user: {comment.user.firstName} {comment.user.lastName}</h4>
              <p>comment: {comment.content}</p>
              <h4>rate:</h4> <Rating>{comment.rating}</Rating>
-             <EditComment  
-             id={comment._id} 
-             userId={comment.user._id}/>
+             
              {this.props.context.isLoggedIn && this.props.context.user._id === comment.user._id && (
-             <button value={comment._id} onClick={this.deleteComment}>x</button>)}
+               <div>
+               <EditComment  
+               id={comment._id} 
+               userId={comment.user._id}/>
+             <button value={comment._id} onClick={this.deleteComment}>x</button>
+             </div>)}
          </div>  ))}
       </div>
     )
