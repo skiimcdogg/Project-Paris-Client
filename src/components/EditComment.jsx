@@ -5,6 +5,7 @@ import { withUser } from "../components/Auth/withUser";
 class EditComment extends Component {
 
   state = {
+    formVisible: false,
     content :"",
     rating:"",
   }
@@ -23,7 +24,9 @@ class EditComment extends Component {
     this.setState({ rating: ratingValue, });
   }
 
-
+  handleDisplayForm = () => {
+    this.setState({ formVisible: !this.state.formVisible });
+  };
 
   editComment =(event)=>{
     const comId = event.target.value;
@@ -49,8 +52,10 @@ class EditComment extends Component {
   console.log(this.props.id)
     return (
       <div>
-       
-      {this.props.context.isLoggedIn && this.props.context.user._id === this.props.userId && (
+        <button onClick={this.handleDisplayForm}>
+          edit
+        </button>
+      {this.state.formVisible && this.props.context.isLoggedIn && this.props.context.user._id === this.props.userId && (
          <div key={this.props.userId}>
            <h2>Edit your comment</h2>
          <input type="text" name="content" value={this.state.content} onChange={this.handleChange}/>

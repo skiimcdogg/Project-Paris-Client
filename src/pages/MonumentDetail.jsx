@@ -7,8 +7,8 @@ import AddDeleteMonumentComment from './../components/AddDeleteMonumentComment';
 import Favorites from "../components/Favorites";
 import { withUser } from "../components/Auth/withUser";
 
-// mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default; 
-// Inform your Mapbox token (https://www.mapbox.com/account/)
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;// Inform your Mapbox token (https://www.mapbox.com/account/)
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN; // NEW
 
  class MonumentDetail extends Component {
@@ -33,27 +33,19 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN; // NEW
       this.initMap(lng,lat) // NEW
     })
     .catch((err) => console.log(err));
-  
-  
-  
   }
   
     componentDidMount(){
       this.getMonument();
-  
     }
-  
-  
   
     componentDidUpdate(prevProps, prevState){
       if (prevProps.match.params.id!==this.props.match.params.id ){
         this.getMonument();
       }
-    
     }
 
-
-initMap = (lng,lat) => {
+initMap = (lat,lng) => {
   // NEW METHOD
   // Embed the map where "mapDomRef" is defined in the render
   this.map = new mapboxgl.Map({
@@ -73,7 +65,6 @@ initMap = (lng,lat) => {
 }
 
 
-
   render() {
 
     if (this.state.Monument === null ) {
@@ -83,6 +74,10 @@ initMap = (lng,lat) => {
       <div className='col-7' key={this.state.Monument._id}>
         <h1>{this.state.Monument.fields.tico}</h1>
         <h3> Adress: <br/> {this.state.Monument.fields.wadrs}</h3>
+        <h4>look out for:</h4>
+        {this.state.Monument.fields.ppro}
+        <h4>see more:</h4>
+        {this.state.Monument.fields.contact}
         {this.props.context.isLoggedIn &&(<Favorites />)}
         <div ref={this.mapDomRef} style={{height: 400, width: "100%"}}></div>
         <AddDeleteMonumentComment id={this.props.match.params.id}/>

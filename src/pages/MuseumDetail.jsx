@@ -7,8 +7,9 @@ import AddDeleteMuseumComment from './../components/AddDeleteMuseumComment';
 import Favorites from "../components/Favorites";
 import { withUser } from "../components/Auth/withUser";
 
+mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default; 
+// Inform your Mapbox token (https://www.mapbox.com/account/)
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN; // NEW
-
 
  class MuseumDetail extends Component {
 
@@ -54,7 +55,7 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN; // NEW
 
 
 
-initMap = (lng,lat) => {
+initMap = (lat,lng) => {
   // NEW METHOD
   // Embed the map where "mapDomRef" is defined in the render
   this.map = new mapboxgl.Map({
@@ -73,8 +74,6 @@ initMap = (lng,lat) => {
     .addTo(this.map)
 }
 
-
-
   render() {
       if ( this.state.Museum === null ) {
       return <div>Loading...</div>;}
@@ -82,8 +81,10 @@ initMap = (lng,lat) => {
       <div className='col-7'>
          <h1>{this.state.Museum.fields.nom_du_musee}</h1>
         <h3> Adress:<br/>  {this.state.Museum.fields.adr}</h3>
-        <p>Ouverture:<br/> {this.state.Museum.fields.periode_ouverture}</p>
-        <p>Fermeture annuelle:  <br/> {this.state.Museum.fields.fermeture_annuelle}</p>
+        <p>Open hours:<br/> {this.state.Museum.fields.periode_ouverture}</p>
+        <p>Closed on:  <br/> {this.state.Museum.fields.fermeture_annuelle}</p>
+        <h4>see more:</h4>
+        {this.state.Museum.fields.sitweb}
         {this.props.context.isLoggedIn &&(<Favorites />)}
         <div ref={this.mapDomRef} style={{height: 400, width: "100%"}}></div>
         <AddDeleteMuseumComment id={this.props.match.params.id}/>
