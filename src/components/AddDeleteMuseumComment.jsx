@@ -3,6 +3,7 @@ import EditComment from './EditComment.jsx';
 import apiHandler from '../api/apiHandler';
 import { withUser } from "../components/Auth/withUser";
 import Rating from './Rating';
+import './../styles/Comment.css'
 
 class AddDeleteMuseumComment extends Component {
 
@@ -12,7 +13,7 @@ class AddDeleteMuseumComment extends Component {
     rating:"",
   }
 
-  componentDidMount(){
+  getComments=()=>{
     apiHandler
     .getComments()
     .then((data) => {
@@ -24,6 +25,18 @@ class AddDeleteMuseumComment extends Component {
       this.setState({ comments: thisMuseumComment});
     })
     .catch((err) => console.log(err));
+
+  }
+
+  componentDidMount(){
+  this.getComments();
+    }
+
+    componentDidUpdate(prevProps, prevState){
+  
+      if (prevProps.id !== this.props.id ){
+        this.getComments();
+      }
     }
 
   handleChange = (event) => {
@@ -80,11 +93,22 @@ class AddDeleteMuseumComment extends Component {
     return (
       
       <div>
-        {this.props.context.isLoggedIn &&(  <div>
+        {this.props.context.isLoggedIn &&(  
+        <div className="comment-container">
           <h2>Add a comment</h2>
           <input name="content" type="text" value={this.state.content} onChange={this.handleChange}></input>
-        <div>
-          <label for="ratestar">rate:</label>
+        <div className="rate">
+        <input onChange={this.getRate} type="radio" id="star5" name="rating" value="5" />
+        <label for="star5" title="text">5 stars</label>
+        <input onChange={this.getRate} type="radio" id="star4" name="rating" value="4" />
+        <label for="star4" title="text">4 stars</label>
+        <input onChange={this.getRate} type="radio" id="star3" name="rating" value="3" />
+        <label for="star3" title="text">3 stars</label>
+        <input onChange={this.getRate} type="radio" id="star2" name="rating" value="2" />
+        <label for="star2" title="text">2 stars</label>
+        <input onChange={this.getRate} type="radio" id="star1" name="rating" value="1" />
+        <label for="star1" title="text">1 star</label>
+          {/* <label for="ratestar">rate:</label>
             <select value={this.state.rating} onChange={this.getRate}>
             <option name="rating" >Evaluate</option>
               <option name="rating" value="1">1</option>
@@ -92,25 +116,25 @@ class AddDeleteMuseumComment extends Component {
               <option name="rating" value="3">3</option>
               <option name="rating" value='4'>4</option>
               <option name="rating" value="5" >5</option>
-            </select>
+            </select> */}
           </div>
-          <button onClick={this.handleSubmit} >add</button>
+          <button className="btn04" onClick={this.handleSubmit} ><span>add</span></button>
         </div>)}
   
-        
+        <h3>All comments from visitors</h3>
           {this.state.comments.map((comment) => (
              <div key={comment._id}>
-             <h3>All comments from visitors</h3>
+             
              <h4>user: {comment.user.firstName} {comment.user.lastName}</h4>
              <p>comment: {comment.content}</p>
              <h4>rate:</h4> <Rating>{comment.rating}</Rating>
              
              {this.props.context.isLoggedIn && this.props.context.user._id === comment.user._id && (
-               <div>
+               <div >
                <EditComment  
                id={comment._id} 
                userId={comment.user._id}/>
-             <button value={comment._id} onClick={this.deleteComment}>x</button>
+             <button className="delete-btn" value={comment._id} onClick={this.deleteComment}>✖</button>
              </div>)}
          </div>  ))}
       </div>

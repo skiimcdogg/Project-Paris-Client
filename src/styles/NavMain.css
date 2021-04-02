@@ -41,4 +41,11 @@
 .block{
   display: inline-block;
   height: 100%;
+  font-size: 140%;
+}
+
+.block:hover{
+  color: blanchedalmond;
+  -webkit-transition: all 1s;
+  transition: all 1s;
 }

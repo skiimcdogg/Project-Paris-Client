@@ -126,9 +126,7 @@ class TourismPlaces extends Component {
        </div>
       <div className="row" >  
 
-        <div className="col-5" style={{ 
-          maxHeight: '90vh',
-          overflow: 'scroll',}}>
+        <div className="col-5 scroll_bar">
           <table className="list-group table-places" >
             <thead >
               <tr >
@@ -176,10 +174,9 @@ class TourismPlaces extends Component {
                     </a>
                   </td>
                   <td className='center'>
-                    
-                    <button className='btn-detail'>
+  
                       <Link exact to={`/places/${museum._id}/museum`}> <img className="monument-icon" src={landmark} alt=""/></Link>
-                    </button>
+              
                   </td>
                 </tr>
                   )

@@ -17,12 +17,7 @@ td,th{
   margin: 0 auto;
 }
 
-.btn-detail{
-  background-color: transparent;
-  border: wheat 1px solid;
-  border-radius: 3px;
-  padding:2%;
-}
+
 
 .monument-icon:hover{
  width: 12%;
@@ -40,11 +35,17 @@ border: none;
 background-color: rgba(255, 255, 255, 1);
 width: 40%;
 padding: 0.5%;
+outline:none;
 }
 .searchBar:hover{
+ 
   border: none;
   background-color: rgba(201, 201, 201, 0.6);
   padding: 0.5%;
+  width: 99%;
+  -webkit-transition: all 1s;
+    transition: all 1s;
+    outline:none;
   }
 
 .checkSearch{
@@ -57,6 +58,31 @@ margin-left: 4%;
   -ms-flex: 0 0 41.666667%;
   flex: 0 0 41.666667%;
   max-width: 41.666667%;
+}
+
+
+.scroll_bar{
+  max-height: 90vh;  
+  overflow: scroll;
+  
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 5px;
+}
+/* ::-webkit-scrollbar&:hover {
+  width: 10px;
+} */
+
+::-webkit-scrollbar-track {
+  border-radius: 2px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to top, #bfc753 40%, #595f08 100%);
+  border-radius: 1px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3);
 }
 
 
@@ -76,3 +102,4 @@ margin-left: 4%;
   flex: 0 0 58.333333%;
   max-width: 58.333333%;
 }
+

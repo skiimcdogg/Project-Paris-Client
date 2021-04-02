@@ -45,17 +45,17 @@ const NavMain = (props) => {
               </NavLink>
             </li>
             <li>
-              <p onClick={handleLogout}>Logout</p>
+              <p className="block" onClick={handleLogout}>Logout</p>
             </li>
           </React.Fragment>
         )}
         {!context.isLoggedIn && (
           <React.Fragment>
             <li>
-              <NavLink to="/signin">Log in</NavLink>
+              <NavLink className="block" to="/signin">Log in</NavLink>
             </li>
             <li>
-              <NavLink to="/signup">Create account</NavLink>
+              <NavLink className="block" to="/signup">Create account</NavLink>
             </li>
           </React.Fragment>
         )}

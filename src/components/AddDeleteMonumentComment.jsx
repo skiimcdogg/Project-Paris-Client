@@ -3,6 +3,7 @@ import EditComment from './EditComment';
 import apiHandler from '../api/apiHandler';
 import { withUser } from "../components/Auth/withUser";
 import Rating from './Rating';
+import './../styles/Comment.css'
 
 class AddDeleteMonumentComment extends Component {
 
@@ -12,16 +13,29 @@ class AddDeleteMonumentComment extends Component {
     rating:"",
   }
 
+  getComments=()=>{
+    apiHandler
+    .getComments()
+    .then((data) => {
+      const thisMonumentComment = data.filter((monument)=>{
+        if(this.props.id ===monument.placeMonument) return monument   
+      }) 
+      this.setState({ comments: thisMonumentComment});
+    })
+    .catch((err) => console.log(err));
+  }
+
+
   componentDidMount(){
-  apiHandler
-  .getComments()
-  .then((data) => {
-    const thisMonumentComment = data.filter((monument)=>{
-      if(this.props.id ===monument.placeMonument) return monument   
-    }) 
-    this.setState({ comments: thisMonumentComment});
-  })
-  .catch((err) => console.log(err));
+  this.getComments();
+  }
+
+  
+  componentDidUpdate(prevProps, prevState){
+  
+    if (prevProps.id !== this.props.id ){
+      this.getComments();
+    }
   }
 
   handleChange = (event) => {
@@ -79,29 +93,32 @@ class AddDeleteMonumentComment extends Component {
       <div>
 
         {this.props.context.isLoggedIn &&(
-          <div>
+          <div className="comment-container">
           <h2>Add a comment</h2>
           <input name="content" type="text" value={this.state.content} onChange={this.handleChange}/>
-          <div>
-           <label for="ratestar">rate:</label>
-             <select value={this.state.rating} onChange={this.getRate}>
-             <option name="rating" >Evaluate</option>
-               <option name="rating" value="1">1</option>
-               <option name="rating" value="2">2</option>
-               <option name="rating" value="3">3</option>
-               <option name="rating" value='4'>4</option>
-               <option name="rating" value="5" >5</option>
-             </select>
-           </div>
-           <button onClick={this.handleSubmit} >add</button>
+          
+             <div className="rate">
+             <input onChange={this.getRate} type="radio" id="star5" name="rating" value="5" />
+            <label for="star5" title="text">5 stars</label>
+            <input onChange={this.getRate} type="radio" id="star4" name="rating" value="4" />
+            <label for="star4" title="text">4 stars</label>
+            <input onChange={this.getRate} type="radio" id="star3" name="rating" value="3" />
+            <label for="star3" title="text">3 stars</label>
+            <input onChange={this.getRate} type="radio" id="star2" name="rating" value="2" />
+            <label for="star2" title="text">2 stars</label>
+            <input onChange={this.getRate} type="radio" id="star1" name="rating" value="1" />
+            <label for="star1" title="text">1 star</label>
+             </div>
+          
+           <button className="btn04" onClick={this.handleSubmit} ><span>add</span></button>
           </div>
            
         )}      
-       
+       <h3>All comments from visitors</h3>
           {this.state.comments.map((comment) => (
             
              <div key={comment._id}>
-             <h3>All comments from visitors</h3>
+             
              <h4>user: {comment.user.firstName} {comment.user.lastName}</h4>
              <p>comment: {comment.content}</p>
              <h4>rate:</h4> <Rating>{comment.rating}</Rating>
@@ -112,7 +129,7 @@ class AddDeleteMonumentComment extends Component {
                   <EditComment 
                 id={comment._id} 
                 userId={comment.user._id}/>
-                <button value={comment._id} onClick={this.deleteComment}>x</button>
+                <button className="delete-btn" value={comment._id} onClick={this.deleteComment}>✖</button>
                 </div>
              )}
          

@@ -1,0 +1,186 @@
+.comment-container>input{
+  outline: none;
+  border:rgb(190, 190, 190) 1px solid;
+  border-radius: 3px;
+  width: 100%;
+  height: 14vh;
+}
+
+.comment-container{
+  display: flex;
+  flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+button{
+  outline: none;
+}
+
+
+.btn04 {
+  position: relative;
+  display: inline-block;
+  padding: 0.4% 48%;
+  background: #a1a305;
+  border: 2px solid #a1a305;
+  border-radius: 4px;
+  color: #a1a305;
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: bold;
+  -webkit-transition: .8s;
+  transition: .8s;
+}
+
+
+.btn04::before,
+.btn04::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  display: block;
+  width: 51%;
+  height: 100%;
+  background-color: #ffffff;
+  -webkit-transition: .2s;
+  transition: .2s;
+  
+}
+
+.btn04::before {
+  left: 0;
+}
+
+.btn04::after {
+  right: 0;
+}
+
+.btn04:hover::before,
+.btn04:hover::after {
+  width: 0;
+  background: #ffffff;
+}
+
+.btn04:hover {
+  color: #ffffff;
+}
+
+.btn04 span {
+  position: relative;
+  z-index: 1;
+
+}
+
+
+
+
+
+
+.btn05 {
+  position: relative;
+  display: inline-block;
+  padding: 0.4% 2%;
+  background: #a1a305;
+  border: 2px solid #a1a305;
+  border-radius: 4px;
+  color: #a1a305;
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: bold;
+  -webkit-transition: .8s;
+  transition: .8s;
+}
+
+
+.btn05::before,
+.btn05::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  display: block;
+  width: 51%;
+  height: 100%;
+  background-color: #ffffff;
+  -webkit-transition: .2s;
+  transition: .2s;
+  
+}
+
+.btn05::before {
+  left: 0;
+}
+
+.btn05::after {
+  right: 0;
+}
+
+.btn05:hover::before,
+.btn05:hover::after {
+  width: 0;
+  background: #ffffff;
+}
+
+.btn05:hover {
+  color: #ffffff;
+}
+
+.btn05 span {
+  position: relative;
+  z-index: 1;
+
+}
+
+
+.delete-btn{
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.delete-btn:hover{
+  color: rgb(143, 156, 22);
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+
+
+/* rating */
+.rate {
+  float: left;
+  height: 46px;
+  padding: 0 10px;
+}
+.rate:not(:checked) > input {
+  position:absolute;
+  top:-9999px;
+}
+.rate:not(:checked) > label {
+  float:right;
+  width:1em;
+  overflow:hidden;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:30px;
+  color:#ccc;
+}
+.rate:not(:checked) > label:before {
+  content: '★ ';
+}
+.rate > input:checked ~ label {
+  color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #c59b08;
+}
+
+/* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
