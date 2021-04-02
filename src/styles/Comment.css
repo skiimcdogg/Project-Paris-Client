@@ -31,6 +31,7 @@ button{
   font-weight: bold;
   -webkit-transition: .8s;
   transition: .8s;
+  margin-top: 1%;
 }
 
 

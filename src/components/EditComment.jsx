@@ -8,7 +8,7 @@ class EditComment extends Component {
   state = {
     formVisible: false,
     content :"",
-    rating:"",
+    
   }
 
   handleChange = (event) => {
@@ -31,10 +31,10 @@ class EditComment extends Component {
 
   editComment =(event)=>{
     const comId = event.target.value;
-    const { content,rating } = this.state;
+    const { content } = this.state;
 
     apiHandler
-    .editComment(comId,{ content,rating })
+    .editComment(comId,{ content })
     .then((data) => {
       console.log(data);
       this.setState({data});
@@ -44,7 +44,7 @@ class EditComment extends Component {
     .catch((err) => console.log(err));
     this.setState({
       content: '',
-      rating:'',
+     
     });
   }
 
@@ -60,7 +60,7 @@ class EditComment extends Component {
          <div className="comment-container" key={this.props.userId}>
            <h2>Edit your comment</h2>
          <input type="text" name="content" value={this.state.content} onChange={this.handleChange}/>
-         <div className="rate">
+         {/* <div className="rate">
              <input onChange={this.getRate} type="radio" id="star5" name="rating" value="5" />
             <label for="star5" title="text">5 stars</label>
             <input onChange={this.getRate} type="radio" id="star4" name="rating" value="4" />
@@ -71,7 +71,7 @@ class EditComment extends Component {
             <label for="star2" title="text">2 stars</label>
             <input onChange={this.getRate} type="radio" id="star1" name="rating" value="1" />
             <label for="star1" title="text">1 star</label>
-             </div>
+             </div> */}
              {/* <label for="ratestar">rate:</label>
             <select value={this.state.rating} onChange={this.getRate}>
             <option name="rating" >Evaluate</option>

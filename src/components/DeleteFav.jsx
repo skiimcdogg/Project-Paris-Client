@@ -54,9 +54,9 @@ class DeleteFav extends Component {
             );
           } else if (fav.favMuseums != null) {
             return (
-              <div key={fav._id}>
-                <p>{fav.favMuseums.fields.nom_du_musee}</p>
-                <button onClick={this.handleClick} value={fav._id}>
+              <div className=" display-button list-group" key={fav._id}>
+                <p className="some-margin">{fav.favMuseums.fields.nom_du_musee}</p>
+                <button className="btn-outline-dark display-button mid-size" onClick={this.handleClick} value={fav._id}>
                   Delete
                 </button>
               </div>
