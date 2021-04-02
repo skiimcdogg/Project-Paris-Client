@@ -1,5 +1,15 @@
+body {
+    position: relative;
+}
+
+.fav-div {
+    position: absolute;
+    top: -3%;
+    left: 90%;
+}
+
 .fav {
-    width: 7%;
+    width: 35%;
 }
 
 .fav-btn {
@@ -14,8 +24,8 @@
 
 .fav-btn:active {
     opacity: 0;
-    width: 50%;
-    transition: all 0.4s;
+    width: 80%;
+    transition: all 0.5s;
   }
   
   .fav-btn:active:after {
